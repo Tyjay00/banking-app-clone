@@ -1,6 +1,7 @@
 
 {
   "name": "capitec-clone",
+  "homepage": "https://tyjay00.github.io/banking-app-clone/", 
   "private": true,
   "version": "1.0.0",
   "type": "module",

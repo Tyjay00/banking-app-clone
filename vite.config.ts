@@ -6,7 +6,7 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   // Change 'banking-app-clone' to your actual repository name
-  base: './', 
+  base: '/banking-app-clone', 
   build: {
     outDir: 'dist',
   }
