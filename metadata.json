@@ -1,0 +1,7 @@
+{
+  "name": "Copy of Capitec Global One Clone",
+  "description": "A high-fidelity Capitec banking application clone featuring account management, transaction history, and an AI-powered financial assistant using Gemini.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
