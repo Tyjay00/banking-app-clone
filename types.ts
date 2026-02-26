@@ -10,10 +10,14 @@ export interface Transaction {
 
 export interface Account {
   id: string;
-  type: 'Savings' | 'Credit' | 'Investment';
+  type: 'Savings' | 'Credit' | 'Investment' | '7 Day Notice';
   balance: number;
   accountNumber: string;
   color: string;
+  pendingWithdrawal?: {
+    amount: number;
+    dueDate: string;
+  };
 }
 
 export interface UserState {
