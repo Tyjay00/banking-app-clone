@@ -78,7 +78,7 @@ const Welcome: React.FC<WelcomeProps> = ({ onContinue, userName }) => {
             <div>
               <h3 className="font-semibold text-gray-800 text-sm">Payment issues</h3>
               <p className="text-gray-600 text-xs mt-1">
-                You may experience delays or errors when making payments in the app. We're working on resolving it urgently.
+                You may experience delays In Savings Accounts payments or errors when making payments in the app. We're working on resolving it urgently.
               </p>
             </div>
           </div>
