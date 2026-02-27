@@ -41,9 +41,9 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, onTabChange }) => {
         onClick={() => onTabChange('transact')}
         className="flex flex-col items-center flex-1 relative mb-0.5 group"
       >
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-white rounded-t-2xl px-2 pt-1 border-t border-x border-gray-100">
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-white rounded-t-2xl px-2 pt-1 border-t border-x border-capitec-blue">
            <div className="relative">
-              <svg className="w-14 h-14 text-gray-400 group-hover:text-capitec-blue transition-colors" fill="currentColor" viewBox="0 0 24 24">
+              <svg className="w-14 h-14 text-capitec-blue group-hover:text-capitec-blue transition-colors" fill="currentColor" viewBox="0 0 24 24">
                  <path d="M8 5v14l11-7z" className="opacity-0"/>
                  <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="1.5"/>
                  <path d="M7 12l3.5 3.5L17 9" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
@@ -55,7 +55,7 @@ const Navigation: React.FC<NavigationProps> = ({ activeTab, onTabChange }) => {
               </div>
            </div>
         </div>
-        <span className="text-[11px] font-semibold text-gray-500 mt-12">Transact</span>
+        <span className="text-[11px] font-semibold text-capitec-blue mt-12">Transact</span>
       </button>
 
       {/* Messages */}
