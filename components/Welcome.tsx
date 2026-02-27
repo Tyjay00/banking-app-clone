@@ -17,9 +17,9 @@ const Welcome: React.FC<WelcomeProps> = ({ onContinue, userName }) => {
   ];
 
   return (
-    <div className="flex flex-col h-screen bg-white">
+    <div className="flex flex-col h-screen bg-white overflow-hidden">
       {/* Header */}
-      <header className="bg-white px-4 py-3 flex justify-between items-center border-b border-gray-100">
+      <header className="bg-white px-4 py-3 flex justify-between items-center border-b border-gray-100 flex-shrink-0">
         <button className="p-2">
           <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path d="M4 6h16M4 12h16M4 18h16" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -40,14 +40,14 @@ const Welcome: React.FC<WelcomeProps> = ({ onContinue, userName }) => {
         </div>
       </header>
 
-      {/* Main Content */}
-      <div className="flex-1 overflow-y-auto px-4">
+      {/* Scrollable Content */}
+      <div className="flex-1 overflow-y-auto px-4 py-8">
         {/* Greeting Section */}
-        <div className="py-8 text-center">
+        <div className="text-center mb-8">
           <h1 className="text-6xl font-bold text-red-500 mb-4" style={{
             background: 'linear-gradient(45deg, #E20613, #ff6b6b)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
+            WebKitBackgroundClip: 'text',
+            WebKitTextFillColor: 'transparent',
             backgroundClip: 'text',
           }}>
             hello
@@ -85,7 +85,7 @@ const Welcome: React.FC<WelcomeProps> = ({ onContinue, userName }) => {
         </div>
 
         {/* Quick Actions Grid */}
-        <div className="grid grid-cols-2 gap-3 mb-6">
+        <div className="grid grid-cols-2 gap-3 mb-8">
           {/* Buy Airtime and Data */}
           <div className="bg-white border border-gray-200 rounded-lg p-4 flex flex-col items-center justify-center h-32 shadow-sm">
             <div className="text-capitec-blue mb-2">
@@ -128,8 +128,8 @@ const Welcome: React.FC<WelcomeProps> = ({ onContinue, userName }) => {
         </div>
       </div>
 
-      {/* Footer Actions */}
-      <div className="sticky bottom-0 bg-white border-t border-gray-200 p-4 space-y-2">
+      {/* Footer - Fixed at bottom */}
+      <div className="bg-white border-t border-gray-200 p-4 space-y-2 flex-shrink-0">
         {/* Sign In Button */}
         <button
           onClick={onContinue}
