@@ -129,11 +129,11 @@ const Welcome: React.FC<WelcomeProps> = ({ onContinue, userName }) => {
       </div>
 
       {/* Footer - Fixed at bottom */}
-      <div className="bg-white border-t border-gray-200 p-4 space-y-2 flex-shrink-0">
+      <div className="bg-white border-t border-gray-200 p-4 space-y-3 flex-shrink-0">
         {/* Sign In Button */}
         <button
           onClick={onContinue}
-          className="w-full bg-capitec-blue text-white font-bold py-4 rounded-lg shadow-md hover:opacity-90 transition-opacity border-2 border-capitec-blue"
+          className="w-full bg-capitec-blue text-white font-bold py-3 px-4 rounded-lg shadow-md hover:opacity-90 transition-opacity border-2 border-capitec-blue text-center text-base"
         >
           Sign In
         </button>
