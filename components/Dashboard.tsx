@@ -10,8 +10,9 @@ interface DashboardProps {
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ accounts, transactions, userName, onAccountClick }) => {
-  // Calculate total balance from transaction history for the "Main Account" (ID 1)
-  const mainAccountBalance = transactions.reduce((acc, curr) => acc + curr.amount, 0);
+  // Get the Main Account balance from the accounts array
+  const mainAccount = accounts.find(acc => acc.id === '1');
+  const mainAccountBalance = mainAccount?.balance || 0;
   const formattedBalance = mainAccountBalance.toLocaleString('en-ZA', { minimumFractionDigits: 2 });
 
   return (
