@@ -32,20 +32,20 @@ const MOCK_BILLS: Bill[] = [
 ];
 
 const MOCK_TRANSACTIONS: Transaction[] = [
-  { id: 't0a', date: '26 Feb 2026 14:32', description: 'Transfer to 7 Day Notice Account', amount: 9500.00, category: 'Transfer' },
-  { id: 't0b', date: '26 Feb 2026 10:15', description: 'Incoming Transfer - Main Account', amount: 9500.00, category: 'Other Income' },
-  { id: 't1', date: '23 Dec 2025 05:47', description: 'Ref.Mtn Ba13681283', amount: -9924.76, category: 'Debit Orders' },
-  { id: 't2', date: '23 Dec 2025 05:47', description: 'Ref.Mtn Ba13681283', amount: -3429.48, category: 'Debit Orders' },
-  { id: 't3', date: '23 Dec 2025 05:47', description: 'Sand AI Training Pty', amount: 13354.24, category: 'Other Income' },
-  { id: 't4', date: '21 Dec 2025 07:19', description: 'Capitec Pay Fee', amount: -1.00, category: 'Fees' },
-  { id: 't5', date: '21 Dec 2025 07:19', description: 'UAE MasterCard Scholarship: Immediate Capitec P...', amount: -700.00, category: 'Education' },
-  { id: 't6', date: '21 Dec 2025 07:10', description: 'T Mthethwa', amount: 700.00, category: 'Other Income' },
-  { id: 't7', date: '21 Dec 2025 12:57', description: 'Capitec Pay Fee', amount: -1.00, category: 'Fees' },
-  { id: 't8', date: '21 Dec 2025 12:57', description: 'UAE MasterCard Scholarship: Immediate Capitec P...', amount: -1400.00, category: 'Education' },
-  { id: 't9', date: '21 Dec 2025 12:35', description: 'L Mthethwa', amount: 1400.00, category: 'Other Income' },
-  { id: 't10', date: '21 Dec 2025 00:57', description: 'Capitec Pay Fee', amount: -1.00, category: 'Fees' },
-  { id: 't11', date: '21 Dec 2025 00:57', description: 'UAE MasterCard Scholarship: Immediate Capitec P...', amount: -1400.00, category: 'Education' },
-  { id: 't12', date: '21 Dec 2025 00:35', description: 'L Mthethwa', amount: 1400.00, category: 'Other Income' },
+  { id: 't0a', date: '26 Feb 2026 14:32', description: 'Transfer to 7 Day Notice Account', amount: 9500.00, accountId: '3', category: 'Transfer' },
+  { id: 't0b', date: '26 Feb 2026 10:15', description: 'Incoming Transfer - Main Account', amount: 9500.00, accountId: '3', category: 'Other Income' },
+  { id: 't1', date: '23 Dec 2025 05:47', description: 'Ref.Mtn Ba13681283', amount: -9924.76, accountId: '1', category: 'Debit Orders' },
+  { id: 't2', date: '23 Dec 2025 05:47', description: 'Ref.Mtn Ba13681283', amount: -3429.48, accountId: '1', category: 'Debit Orders' },
+  { id: 't3', date: '23 Dec 2025 05:47', description: 'Sand AI Training Pty', amount: 13354.24, accountId: '1', category: 'Other Income' },
+  { id: 't4', date: '21 Dec 2025 07:19', description: 'Capitec Pay Fee', amount: -1.00, accountId: '1', category: 'Fees' },
+  { id: 't5', date: '21 Dec 2025 07:19', description: 'UAE MasterCard Scholarship: Immediate Capitec P...', amount: -700.00, accountId: '1', category: 'Education' },
+  { id: 't6', date: '21 Dec 2025 07:10', description: 'T Mthethwa', amount: 700.00, accountId: '1', category: 'Other Income' },
+  { id: 't7', date: '21 Dec 2025 12:57', description: 'Capitec Pay Fee', amount: -1.00, accountId: '1', category: 'Fees' },
+  { id: 't8', date: '21 Dec 2025 12:57', description: 'UAE MasterCard Scholarship: Immediate Capitec P...', amount: -1400.00, accountId: '1', category: 'Education' },
+  { id: 't9', date: '21 Dec 2025 12:35', description: 'L Mthethwa', amount: 1400.00, accountId: '1', category: 'Other Income' },
+  { id: 't10', date: '21 Dec 2025 00:57', description: 'Capitec Pay Fee', amount: -1.00, accountId: '1', category: 'Fees' },
+  { id: 't11', date: '21 Dec 2025 00:57', description: 'UAE MasterCard Scholarship: Immediate Capitec P...', amount: -1400.00, accountId: '1', category: 'Education' },
+  { id: 't12', date: '21 Dec 2025 00:35', description: 'L Mthethwa', amount: 1400.00, accountId: '1', category: 'Other Income' },
 ];
 
 const App: React.FC = () => {

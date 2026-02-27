@@ -4,6 +4,7 @@ export interface Transaction {
   date: string;
   description: string;
   amount: number;
+  accountId?: string; // Account ID for filtering transactions by account
   // Fix: Expanded category union to include all categories used in the application mock data, including Debit Orders and Education
   category: 'Groceries' | 'Rent' | 'Salary' | 'Utilities' | 'Entertainment' | 'Transfer' | 'Fees' | 'Betting/Lottery' | 'Other Income' | 'Debit Orders' | 'Education';
 }

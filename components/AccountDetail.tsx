@@ -14,14 +14,19 @@ type FilterTab = 'All' | 'Money In' | 'Money Out';
 const AccountDetail: React.FC<AccountDetailProps> = ({ account, transactions, onBack, onTransactionClick }) => {
   const [activeTab, setActiveTab] = useState<FilterTab>('All');
 
+  // Filter transactions for the current account
+  const accountTransactions = account?.id 
+    ? transactions.filter(t => !t.accountId || t.accountId === account.id)
+    : transactions;
+
   // Calculate summaries based on transaction history
-  const totalIn = transactions.filter(t => t.amount > 0).reduce((acc, curr) => acc + curr.amount, 0);
-  const totalOut = Math.abs(transactions.filter(t => t.amount < 0).reduce((acc, curr) => acc + curr.amount, 0));
-  const availableBalance = account?.balance ?? transactions.reduce((acc, curr) => acc + curr.amount, 0);
+  const totalIn = accountTransactions.filter(t => t.amount > 0).reduce((acc, curr) => acc + curr.amount, 0);
+  const totalOut = Math.abs(accountTransactions.filter(t => t.amount < 0).reduce((acc, curr) => acc + curr.amount, 0));
+  const availableBalance = account?.balance ?? accountTransactions.reduce((acc, curr) => acc + curr.amount, 0);
   const accountName = account?.accountNumber ?? 'Main Account';
 
   // Filter transactions based on active tab
-  const filteredTransactions = transactions.filter(t => {
+  const filteredTransactions = accountTransactions.filter(t => {
     if (activeTab === 'Money In') return t.amount > 0;
     if (activeTab === 'Money Out') return t.amount < 0;
     return true;
