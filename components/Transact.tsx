@@ -1,10 +1,10 @@
 
-import React, { useState } from 'react';
+import React, { useState, Dispatch, SetStateAction } from 'react';
 import { UserState, Account, Beneficiary, Bill, Transaction } from '../types';
 
 interface TransactProps {
   transactView: string;
-  setTransactView: (view: string) => void;
+  setTransactView: Dispatch<SetStateAction<string>>;
   accounts: Account[];
   beneficiaries: Beneficiary[];
   bills: Bill[];

@@ -137,7 +137,7 @@ const App: React.FC = () => {
               }}
             />
           );
-        case 'account-detail':
+        case 'account-detail': {
           const selectedAccount = user.accounts.find(a => a.id === selectedAccountId);
           return (
             <AccountDetail 
@@ -147,6 +147,7 @@ const App: React.FC = () => {
               onTransactionClick={handleTransactionClick}
             />
           );
+        }
         case 'transaction-detail':
           return selectedTransaction ? (
             <TransactionDetail 
@@ -165,7 +166,6 @@ const App: React.FC = () => {
         <p className="text-sm">Coming Soon</p>
       </div>
     );
-  };
 
   return (
     <div className="h-screen bg-[#f4f4f4] max-w-md mx-auto relative shadow-2xl overflow-hidden flex flex-col">
