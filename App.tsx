@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import Welcome from './components/Welcome';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import AccountDetail from './components/AccountDetail';
@@ -10,15 +11,29 @@ import Explore from './components/Explore';
 import Messages from './components/Messages';
 import Navigation from './components/Navigation';
 import ChatBot from './components/ChatBot';
-import { UserState, Account, Transaction } from './types';
+import { UserState, Account, Transaction, Beneficiary, Bill } from './types';
 
 const MOCK_ACCOUNTS: Account[] = [
-  { id: '1', type: 'Savings', balance: 0, accountNumber: 'Main Account', color: '#009fe3' },
+  { id: '1', type: 'Savings', balance: 9500, accountNumber: 'Main Account', color: '#009fe3' },
   { id: '2', type: 'Investment', balance: 0, accountNumber: 'Savings Plans', color: '#004b91' },
-  { id: '3', type: '7 Day Notice', balance: 9500, accountNumber: '7 Day Notice Account', color: '#e20613', pendingWithdrawal: { amount: 9500, dueDate: '27 Feb 2026' } }
+  { id: '3', type: '7 Day Notice', balance: 9500, accountNumber: '7 Day Notice Account', color: '#e20613', pendingWithdrawal: { amount: 9500, dueDate: '28 Feb 2026 09:00 am' } }
+];
+
+const MOCK_BENEFICIARIES: Beneficiary[] = [
+  { id: 'b1', name: 'John Doe', accountNumber: '123456789', bankName: 'Capitec Bank', accountType: 'Savings' },
+  { id: 'b2', name: 'Jane Smith', accountNumber: '987654321', bankName: 'First National Bank', accountType: 'Cheque' },
+  { id: 'b3', name: 'Michael Johnson', accountNumber: '555666777', bankName: 'ABSA', accountType: 'Savings' }
+];
+
+const MOCK_BILLS: Bill[] = [
+  { id: 'bill1', name: 'Eskom - Electricity', accountNumber: '123456', provider: 'Eskom' },
+  { id: 'bill2', name: 'Telkom - Phone Bill', accountNumber: '987654', provider: 'Telkom' },
+  { id: 'bill3', name: 'JET - Internet', accountNumber: '555666', provider: 'JET' }
 ];
 
 const MOCK_TRANSACTIONS: Transaction[] = [
+  { id: 't0a', date: '26 Feb 2026 14:32', description: 'Transfer to 7 Day Notice Account', amount: 9500.00, category: 'Transfer' },
+  { id: 't0b', date: '26 Feb 2026 10:15', description: 'Incoming Transfer - Main Account', amount: 9500.00, category: 'Other Income' },
   { id: 't1', date: '23 Dec 2025 05:47', description: 'Ref.Mtn Ba13681283', amount: -9924.76, category: 'Debit Orders' },
   { id: 't2', date: '23 Dec 2025 05:47', description: 'Ref.Mtn Ba13681283', amount: -3429.48, category: 'Debit Orders' },
   { id: 't3', date: '23 Dec 2025 05:47', description: 'Sand AI Training Pty', amount: 13354.24, category: 'Other Income' },
@@ -28,9 +43,9 @@ const MOCK_TRANSACTIONS: Transaction[] = [
   { id: 't7', date: '21 Dec 2025 12:57', description: 'Capitec Pay Fee', amount: -1.00, category: 'Fees' },
   { id: 't8', date: '21 Dec 2025 12:57', description: 'UAE MasterCard Scholarship: Immediate Capitec P...', amount: -1400.00, category: 'Education' },
   { id: 't9', date: '21 Dec 2025 12:35', description: 'L Mthethwa', amount: 1400.00, category: 'Other Income' },
-  { id: 't7', date: '21 Dec 2025 00:57', description: 'Capitec Pay Fee', amount: -1.00, category: 'Fees' },
-  { id: 't8', date: '21 Dec 2025 00:57', description: 'UAE MasterCard Scholarship: Immediate Capitec P...', amount: -1400.00, category: 'Education' },
-  { id: 't9', date: '21 Dec 2025 00:35', description: 'L Mthethwa', amount: 1400.00, category: 'Other Income' },
+  { id: 't10', date: '21 Dec 2025 00:57', description: 'Capitec Pay Fee', amount: -1.00, category: 'Fees' },
+  { id: 't11', date: '21 Dec 2025 00:57', description: 'UAE MasterCard Scholarship: Immediate Capitec P...', amount: -1400.00, category: 'Education' },
+  { id: 't12', date: '21 Dec 2025 00:35', description: 'L Mthethwa', amount: 1400.00, category: 'Other Income' },
 ];
 
 const App: React.FC = () => {
@@ -38,13 +53,18 @@ const App: React.FC = () => {
     isLoggedIn: false,
     name: 'Tebogo',
     accounts: MOCK_ACCOUNTS,
-    transactions: MOCK_TRANSACTIONS
+    transactions: MOCK_TRANSACTIONS,
+    beneficiaries: MOCK_BENEFICIARIES,
+    bills: MOCK_BILLS
   });
 
   const [activeTab, setActiveTab] = useState<'home' | 'cards' | 'transact' | 'messages' | 'explore'>('home');
   const [currentView, setCurrentView] = useState<'dashboard' | 'account-detail' | 'transaction-detail'>('dashboard');
+  const [transactView, setTransactView] = useState<'menu' | 'pay-beneficiary' | 'pay-bills' | 'transfer' | 'add-beneficiary'>('menu');
   const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
+  const [selectedAccountId, setSelectedAccountId] = useState<string>('1');
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(true);
 
   const handleLogin = (pin: string) => {
     if (pin.length === 5) {
@@ -62,7 +82,14 @@ const App: React.FC = () => {
     if (tab === 'home') {
       setCurrentView('dashboard');
     }
+    if (tab === 'transact') {
+      setTransactView('menu');
+    }
   };
+
+  if (showWelcome) {
+    return <Welcome onContinue={() => setShowWelcome(false)} userName={user.name} />;
+  }
 
   if (!user.isLoggedIn) {
     return <Login onLogin={handleLogin} />;
@@ -70,7 +97,18 @@ const App: React.FC = () => {
 
   const renderContent = () => {
     if (activeTab === 'transact') {
-      return <Transact />;
+      return (
+        <Transact
+          transactView={transactView}
+          setTransactView={setTransactView}
+          accounts={user.accounts}
+          beneficiaries={user.beneficiaries || []}
+          bills={user.bills || []}
+          user={user}
+          setUser={setUser}
+        />
+      );
+    }
     }
 
     if (activeTab === 'cards') {
@@ -93,12 +131,17 @@ const App: React.FC = () => {
               accounts={user.accounts} 
               transactions={user.transactions} 
               userName={user.name} 
-              onAccountClick={(id) => id === '1' && setCurrentView('account-detail')}
+              onAccountClick={(id) => {
+                setSelectedAccountId(id);
+                setCurrentView('account-detail');
+              }}
             />
           );
         case 'account-detail':
+          const selectedAccount = user.accounts.find(a => a.id === selectedAccountId);
           return (
             <AccountDetail 
+              account={selectedAccount}
               transactions={user.transactions} 
               onBack={() => setCurrentView('dashboard')} 
               onTransactionClick={handleTransactionClick}

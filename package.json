@@ -1,7 +1,6 @@
-
 {
   "name": "capitec-clone",
-  "homepage": "https://tyjay00.github.io/banking-app-clone/", 
+  "homepage": "https://tyjay00.github.io/banking-app-clone/",
   "private": true,
   "version": "1.0.0",
   "type": "module",
@@ -17,6 +16,7 @@
     "recharts": "^3.6.0"
   },
   "devDependencies": {
+    "@types/node": "^25.3.1",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^4.3.4",

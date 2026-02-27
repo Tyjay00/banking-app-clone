@@ -20,9 +20,26 @@ export interface Account {
   };
 }
 
+export interface Beneficiary {
+  id: string;
+  name: string;
+  accountNumber: string;
+  bankName: string;
+  accountType: string;
+}
+
+export interface Bill {
+  id: string;
+  name: string;
+  accountNumber: string;
+  provider: string;
+}
+
 export interface UserState {
   isLoggedIn: boolean;
   name: string;
   accounts: Account[];
   transactions: Transaction[];
+  beneficiaries?: Beneficiary[];
+  bills?: Bill[];
 }

@@ -1,8 +1,9 @@
 
 import React, { useState } from 'react';
-import { Transaction } from '../types';
+import { Transaction, Account } from '../types';
 
 interface AccountDetailProps {
+  account?: Account;
   transactions: Transaction[];
   onBack: () => void;
   onTransactionClick?: (transaction: Transaction) => void;
@@ -10,13 +11,14 @@ interface AccountDetailProps {
 
 type FilterTab = 'All' | 'Money In' | 'Money Out';
 
-const AccountDetail: React.FC<AccountDetailProps> = ({ transactions, onBack, onTransactionClick }) => {
+const AccountDetail: React.FC<AccountDetailProps> = ({ account, transactions, onBack, onTransactionClick }) => {
   const [activeTab, setActiveTab] = useState<FilterTab>('All');
 
   // Calculate summaries based on transaction history
   const totalIn = transactions.filter(t => t.amount > 0).reduce((acc, curr) => acc + curr.amount, 0);
   const totalOut = Math.abs(transactions.filter(t => t.amount < 0).reduce((acc, curr) => acc + curr.amount, 0));
-  const availableBalance = transactions.reduce((acc, curr) => acc + curr.amount, 0);
+  const availableBalance = account?.balance ?? transactions.reduce((acc, curr) => acc + curr.amount, 0);
+  const accountName = account?.accountNumber ?? 'Main Account';
 
   // Filter transactions based on active tab
   const filteredTransactions = transactions.filter(t => {
@@ -38,7 +40,7 @@ const AccountDetail: React.FC<AccountDetailProps> = ({ transactions, onBack, onT
             <path d="M10 19l-7-7m0 0l7-7m-7 7h18" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </button>
-        <h1 className="text-xl font-semibold">Main Account</h1>
+        <h1 className="text-xl font-semibold">{accountName}</h1>
         <div className="flex gap-4">
           <button>
             <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">

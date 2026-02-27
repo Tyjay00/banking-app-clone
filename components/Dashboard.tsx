@@ -28,19 +28,19 @@ const Dashboard: React.FC<DashboardProps> = ({ accounts, transactions, userName,
         {/* Main Account Card */}
         <button 
           onClick={() => onAccountClick?.('1')}
-          className="w-full text-left bg-white rounded-lg overflow-hidden shadow-sm flex h-24 active:opacity-80 transition-opacity border border-gray-100"
+          className="w-full text-left bg-white rounded-lg overflow-hidden shadow-sm flex h-20 active:opacity-80 transition-opacity border border-gray-100"
         >
-          <div className="w-20 bg-[#009fe3] flex items-center justify-center shrink-0">
-            <svg className="w-10 h-10 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+          <div className="w-16 bg-[#009fe3] flex items-center justify-center shrink-0">
+            <svg className="w-7 h-7 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M7 17l-5-5 5-5M17 7l5 5-5 5M2 12h20" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
-          <div className="flex-1 p-4 flex justify-between items-center">
+          <div className="flex-1 p-3 flex justify-between items-center">
             <div>
-              <h3 className="text-capitec-blue font-bold text-[16px]">Main Account</h3>
-              <p className="text-gray-500 text-xs mt-0.5">Available balance</p>
+              <h3 className="text-capitec-blue font-bold text-[14px]">Main Account</h3>
+              <p className="text-gray-500 text-[11px] mt-0.5">Available balance</p>
             </div>
-            <p className="text-gray-800 font-bold text-xl">R{formattedBalance}</p>
+            <p className="text-gray-800 font-bold text-lg">R{formattedBalance}</p>
           </div>
         </button>
 
@@ -51,14 +51,14 @@ const Dashboard: React.FC<DashboardProps> = ({ accounts, transactions, userName,
           const getIcon = (type: string) => {
             if (type === 'Investment') {
               return (
-                <svg className="w-9 h-9 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M5 19h2v-7H5v7zm4 0h2V9H9v10zm4 0h2v-4h-2v4zm4 0h2V7h-2v12zm2 2H3v-2h18v2z" />
                   <path d="M19 12l-1.41-1.41L13 15.17l-3-3l-7 7L4.41 20.59 10 15l3 3z" />
                 </svg>
               );
             } else if (type === '7 Day Notice') {
               return (
-                <svg className="w-9 h-9 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5.04-6.71l-2.75 3.54-2.16-2.66c-.44-.53-1.25-.58-1.78-.15-.53.44-.58 1.25-.15 1.78l3 3.67c.25.31.61.5 1.02.5s.77-.19 1.02-.5l3.93-4.85c.44-.53.39-1.34-.15-1.78s-1.34-.39-1.78.15z"/>
                 </svg>
               );
@@ -66,27 +66,27 @@ const Dashboard: React.FC<DashboardProps> = ({ accounts, transactions, userName,
           };
 
           return (
-            <div key={account.id} className={`bg-white rounded-lg overflow-hidden shadow-sm flex h-24 border ${account.pendingWithdrawal ? 'border-red-300 border-2' : 'border-gray-100'}`}>
-              <div className={`w-20 flex items-center justify-center shrink-0`} style={{ backgroundColor: account.color }}>
+            <div key={account.id} onClick={() => onAccountClick?.(account.id)} className={`bg-white rounded-lg overflow-hidden shadow-sm flex h-20 border cursor-pointer active:opacity-80 transition-opacity ${account.pendingWithdrawal ? 'border-red-300 border-2' : 'border-gray-100'}`}>
+              <div className={`w-16 flex items-center justify-center shrink-0`} style={{ backgroundColor: account.color }}>
                 {getIcon(account.type)}
               </div>
-              <div className="flex-1 p-4 flex justify-between items-center">
+              <div className="flex-1 p-3 flex justify-between items-center">
                 <div>
-                  <h3 className="font-bold text-[16px]" style={{ color: account.color }}>
+                  <h3 className="font-bold text-[14px]" style={{ color: account.color }}>
                     {account.type === 'Investment' ? 'Savings Plans' : account.type}
                   </h3>
                   {account.pendingWithdrawal ? (
                     <div>
-                      <p className="text-red-600 text-xs mt-0.5 font-semibold">Pending withdrawal: R{account.pendingWithdrawal.amount.toLocaleString('en-ZA', { minimumFractionDigits: 2 })}</p>
-                      <p className="text-red-500 text-xs font-medium">Due: {account.pendingWithdrawal.dueDate}</p>
+                      <p className="text-red-600 text-[10px] mt-0.5 font-semibold">Pending withdrawal: R{account.pendingWithdrawal.amount.toLocaleString('en-ZA', { minimumFractionDigits: 2 })}</p>
+                      <p className="text-red-500 text-[9px] font-medium">Due: {account.pendingWithdrawal.dueDate}</p>
                     </div>
                   ) : (
-                    <p className="text-gray-500 text-xs mt-0.5">
+                    <p className="text-gray-500 text-[11px] mt-0.5">
                       {account.type === 'Investment' ? 'Total saved' : 'Account balance'}
                     </p>
                   )}
                 </div>
-                <p className="text-gray-800 font-bold text-xl">R{account.balance.toLocaleString('en-ZA', { minimumFractionDigits: 2 })}</p>
+                <p className="text-gray-800 font-bold text-lg">R{account.balance.toLocaleString('en-ZA', { minimumFractionDigits: 2 })}</p>
               </div>
             </div>
           );
