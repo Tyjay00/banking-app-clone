@@ -46,8 +46,8 @@ const Welcome: React.FC<WelcomeProps> = ({ onContinue, userName }) => {
         <div className="text-center mb-8">
           <h1 className="text-6xl font-bold text-red-500 mb-4" style={{
             background: 'linear-gradient(45deg, #E20613, #ff6b6b)',
-            WebKitBackgroundClip: 'text',
-            WebKitTextFillColor: 'transparent',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
           }}>
             hello

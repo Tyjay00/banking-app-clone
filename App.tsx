@@ -14,7 +14,7 @@ import ChatBot from './components/ChatBot';
 import { UserState, Account, Transaction, Beneficiary, Bill } from './types';
 
 const MOCK_ACCOUNTS: Account[] = [
-  { id: '1', type: 'Savings', balance: 9500, accountNumber: 'Main Account', color: '#009fe3' },
+  { id: '1', type: 'Savings', balance: 0, accountNumber: 'Main Account', color: '#009fe3' },
   { id: '2', type: 'Investment', balance: 0, accountNumber: 'Savings Plans', color: '#004b91' },
   { id: '3', type: '7 Day Notice', balance: 9500, accountNumber: '7 Day Notice Account', color: '#e20613', pendingWithdrawal: { amount: 9500, dueDate: '28 Feb 2026 09:00 am' } }
 ];
@@ -51,7 +51,7 @@ const MOCK_TRANSACTIONS: Transaction[] = [
 const App: React.FC = () => {
   const [user, setUser] = useState<UserState>({
     isLoggedIn: false,
-    name: 'Tebogo',
+    name: 'Tyrone',
     accounts: MOCK_ACCOUNTS,
     transactions: MOCK_TRANSACTIONS,
     beneficiaries: MOCK_BENEFICIARIES,
