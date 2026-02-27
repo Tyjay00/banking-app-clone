@@ -133,7 +133,7 @@ const Welcome: React.FC<WelcomeProps> = ({ onContinue, userName }) => {
         {/* Sign In Button */}
         <button
           onClick={onContinue}
-          className="w-full bg-capitec-blue text-white font-bold py-3 px-4 rounded-lg shadow-md hover:opacity-90 transition-opacity border-2 border-capitec-blue text-center text-base"
+          className="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg shadow-md hover:opacity-90 transition-opacity border-2 border-blue-600"
         >
           Sign In
         </button>
